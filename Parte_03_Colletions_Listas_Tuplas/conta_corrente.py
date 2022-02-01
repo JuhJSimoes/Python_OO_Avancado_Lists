@@ -261,8 +261,8 @@ for indice, idade in enumerate(idades):
     print(indice, 'X', idade)
     
 usuarios = [
-    ('Juliana', 34, 1987)
-    ('Emanoela', 29, 1992)
+    ('Juliana', 34, 1987),
+    ('Emanoela', 29, 1992),
     ('Marcello', 33, 1988)
 ]
 
@@ -272,3 +272,114 @@ for nome, idade, nascimento in usuarios: #unpack
 for nome, _, _ in usuarios: #unpack ignorando os demais
     print(nome)
 
+print('\n############\n')
+
+#Ordenação
+
+print(idades)
+print(sorted(idades, reverse=True))
+idades.sort()
+print(idades)
+
+print('\n-------------\n')
+
+class ContaSalario:
+    def __init__(self, codigo):
+        self._codigo = codigo
+        self._saldo = 0
+    
+    def __eq__(self, other):
+        if type(other) != ContaSalario:
+            return False
+        return self._codigo == other._codigo and self._saldo == other._saldo
+    
+    def deposita(self, valor):
+        self._saldo += valor
+        
+    def __str__(self):
+        return "[Codigo {} Saldo {}]".format(self._codigo, self._saldo)
+    
+conta_juh = ContaSalario(7461)
+conta_juh.deposita(1000)
+
+conta_manu = ContaSalario(645)
+conta_manu.deposita(1500)
+
+conta_marcello = ContaSalario(7891)
+conta_marcello.deposita(1300)
+
+contas = [conta_juh, conta_manu, conta_marcello]
+
+for conta in contas:
+    print(conta)
+
+print('\n-------------\n')
+
+def extrai_saldo(conta):
+    return conta._saldo
+
+for conta in sorted(contas, key=extrai_saldo):
+    print(conta)
+
+print('\n-------------\n')
+
+from operator import attrgetter
+
+for conta in sorted(contas, key=attrgetter('_saldo')):
+    print(conta)
+    
+    
+print('\n-------------\n')
+
+class ContaSalario:
+    def __init__(self, codigo):
+        self._codigo = codigo
+        self._saldo = 0
+    
+    def __eq__(self, other):
+        if type(other) != ContaSalario:
+            return False
+        return self._codigo == other._codigo and self._saldo == other._saldo
+    
+    def __lt__(self, other):
+        return self._saldo < other._saldo
+    
+    def deposita(self, valor):
+        self._saldo += valor
+        
+    def __str__(self):
+        return "[Codigo {} Saldo {}]".format(self._codigo, self._saldo)
+    
+conta_juh = ContaSalario(7461)
+conta_juh.deposita(1000)
+
+conta_manu = ContaSalario(645)
+conta_manu.deposita(1500)
+
+conta_marcello = ContaSalario(7891)
+conta_marcello.deposita(1300)
+
+contas = [conta_juh, conta_manu, conta_marcello]
+
+conta_juh > conta_marcello
+conta_marcello > conta_manu
+conta_manu > conta_juh
+
+for conta in sorted(contas):
+    print(conta)
+
+print('\n-------------\n')
+
+conta_juh = ContaSalario(7461)
+conta_juh.deposita(1300)
+
+conta_manu = ContaSalario(645)
+conta_manu.deposita(1500)
+
+conta_marcello = ContaSalario(7891)
+conta_marcello.deposita(1300)
+
+contas = [conta_juh, conta_manu, conta_marcello]
+
+for conta in sorted(contas, key=attrgetter('_saldo', '_codigo')):
+    print(conta)
