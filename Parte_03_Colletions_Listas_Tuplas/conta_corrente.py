@@ -383,3 +383,88 @@ contas = [conta_juh, conta_manu, conta_marcello]
 
 for conta in sorted(contas, key=attrgetter('_saldo', '_codigo')):
     print(conta)
+
+
+print('\n----------------n')
+
+class ContaSalario:
+    def __init__(self, codigo):
+        self._codigo = codigo
+        self._saldo = 0
+    
+    def __eq__(self, other):
+        if type(other) != ContaSalario:
+            return False
+        return self._codigo == other._codigo and self._saldo == other._saldo
+    
+    def __lt__(self, other):
+        if self._saldo != other._saldo:
+            return self._saldo < other._saldo
+        return self._codigo < other._codigo
+    
+    def deposita(self, valor):
+        self._saldo += valor
+        
+    def __str__(self):
+        return "[Codigo {} Saldo {}]".format(self._codigo, self._saldo)
+    
+
+conta_juh = ContaSalario(7461)
+conta_juh.deposita(1500)
+
+conta_manu = ContaSalario(645)
+conta_manu.deposita(1500)
+
+conta_marcello = ContaSalario(7891)
+conta_marcello.deposita(1500)
+
+contas = [conta_juh, conta_manu, conta_marcello]
+
+#Ordenado por codigo da conta menor quando saldos forem iguais
+for conta in sorted(contas):
+    print(conta)
+    
+
+print('\n----------------n')
+
+#Ordenação functools 
+from functools import total_ordering
+
+@total_ordering
+class ContaSalario:
+    def __init__(self, codigo):
+        self._codigo = codigo
+        self._saldo = 0
+    
+    def __eq__(self, other):
+        if type(other) != ContaSalario:
+            return False
+        return self._codigo == other._codigo and self._saldo == other._saldo
+    
+    def __lt__(self, other):
+        if self._saldo != other._saldo:
+            return self._saldo < other._saldo
+        return self._codigo < other._codigo
+    
+    def deposita(self, valor):
+        self._saldo += valor
+        
+    def __str__(self):
+        return "[Codigo {} Saldo {}]".format(self._codigo, self._saldo)
+    
+
+conta_juh = ContaSalario(7461)
+conta_juh.deposita(1000)
+
+conta_manu = ContaSalario(645)
+conta_manu.deposita(1500)
+
+conta_marcello = ContaSalario(7891)
+conta_marcello.deposita(1300)
+
+contas = [conta_juh, conta_manu, conta_marcello]
+
+print(conta_juh <= conta_manu)
+
+
+#Ordenado total com criterio de igualdade tbm
