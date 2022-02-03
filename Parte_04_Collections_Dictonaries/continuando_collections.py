@@ -39,3 +39,58 @@ usuarios_data_science ^ usuarios_machine_learning #OU exclusivo
 
 fez_ds_nao_fez_ml = usuarios_data_science - usuarios_machine_learning
 27 in fez_ds_nao_fez_ml
+
+usuarios = {1,5,76,34,52,13,17}
+len(usuarios)
+
+usuarios.add(50)
+len(usuarios)
+
+usuarios = frozenset(usuarios) #Conjunto congelado
+
+
+print('\n#######################\n')
+
+#Dictionary
+
+#Formas de criar dicionarios
+aparicoes = dict(Juh = 34, Hope = 10, Momo = 7)
+aparicao = {
+    "Juh" : 34,
+    "Hope" : 10,
+    "Momo" : 7
+}
+
+aparicoes['Manu'] = 29
+print(aparicoes)
+
+del aparicoes['Manu']
+print(aparicoes)
+
+
+#Busca nas chaves
+"Juh" in aparicoes
+
+"Manu" in aparicoes
+
+
+for elemento in aparicoes:
+    print(elemento)
+    
+for elemento in aparicoes.keys():
+    print(elemento)
+
+for elemento in aparicoes.values():
+    print(elemento)
+
+for elemento in aparicoes.items():
+    print(elemento)
+    
+for chave, valor in aparicoes.items():
+    print(chave, ' = ', valor)
+    
+#Concatenando palavra
+['palavra {}'.format(chave) for chave in aparicoes.keys()]
+    
+    
+
