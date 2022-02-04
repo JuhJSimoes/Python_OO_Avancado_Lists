@@ -91,6 +91,8 @@ for chave, valor in aparicoes.items():
     
 #Concatenando palavra
 ['palavra {}'.format(chave) for chave in aparicoes.keys()]
+
+#testando
     
     
 
