@@ -92,7 +92,60 @@ for chave, valor in aparicoes.items():
 #Concatenando palavra
 ['palavra {}'.format(chave) for chave in aparicoes.keys()]
 
-#testando
+print('\n------------\n')
+
+#Contando repetições
+
+meu_texto = "Bem vindo meu nome é Juliana Simoes , eu gosto de cachorros e gatos. Eu tenho 2 cachorros , mas nenhum gato"
+
+meu_texto.lower()
+print(meu_texto)
+
+aparicoes = {}
+for palavra in meu_texto.split():
+    ate_agora = aparicoes.get(palavra, 0)
+    aparicoes[palavra] = ate_agora + 1
     
-    
+aparicoes
+
+print('\n------------\n')
+
+#Defaultdict - dicionario padrao
+from collections import defaultdict
+
+aparicoes = defaultdict(int)
+for palavra in meu_texto.split():
+    ate_agora = aparicoes.get(palavra, 0)
+    aparicoes[palavra] = ate_agora + 1
+
+aparicoes
+
+print('\n------------\n')
+
+aparicoes = defaultdict(int)
+for palavra in meu_texto.split():
+    aparicoes[palavra] += 1
+
+aparicoes
+
+print('\n------------\n')
+
+from collections import Counter
+aparicoes = Counter()
+for palavra in meu_texto.split():
+    aparicoes[palavra] += 1
+
+aparicoes
+
+print('\n------------\n')
+
+aparicoes = Counter(meu_texto.split())
+aparicoes
+
+
+amazon = 'Agradecemos por assinar o Amazon Prime. Agora você pode assistir aos melhores filmes e séries no Prime Video, incluindo originais Amazon. E o melhor: sem qualquer custo adicional.'
+light = 'esta é uma mensagem automática e não deve ser respondida. Marque esse remetente de e-mail como confiável. Mantenha seu cadastro sempre atualizado. Confira outras informações divulgadas na fatura clicando aqui. para cancelar sua Fatura Digital, clique aqui. Para enviar a sua sugestão ou solicitação para a Light, acesse nossos canais.'
+
+aparicoes = Counter(amazon.lower())
+total_de_caracteres = sum
 
